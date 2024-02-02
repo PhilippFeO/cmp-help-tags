@@ -4,7 +4,7 @@ Syntax completion for all help tags in Neovim (including your plugins). It uses 
 ## Installation and Configuration (Lazy.nvim)
 ```lua
 {
-  'PhilippFeO/cmp-csv',
+  'PhilippFeO/cmp-help-tags',
   opts = {
     filetypes = {
         ...
