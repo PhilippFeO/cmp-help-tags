@@ -1,13 +1,18 @@
 # cmp-help-tags
 Syntax completion for all help tags in Neovim (including your plugins). It uses the same data structure as `:Telescope help_tags`. The plugin targets [nvim-cmp](https://github.com/hrsh7th/nvim-cmp).
 
-## Installation (Lazy.nvim)
+## Installation and Configuration (Lazy.nvim)
 ```lua
 {
   'PhilippFeO/cmp-csv',
-  config = true -- Triggers setup(), necessary
+  opts = {
+    filetypes = {
+        ...
+    }
+  }
 }
 ```
+- `filetypes`: Table of filetypes where the completion should be activated, fi. `'markdown'`.
 
 ## Enabling within [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 ```lua

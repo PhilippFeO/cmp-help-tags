@@ -3,9 +3,19 @@ local utils = require "telescope.utils"
 
 local M = {}
 
+M.defaults = {
+  -- TODO: It is probably better to let nvim-cmp control this option directly but currently I don't know how. <21-01-2024>
+  filetypes = {}
+}
+
 M.cmp_items = {}
 
-M.setup = function()
+M.setup = function(opts)
+  vim.validate({
+    filetype = { opts.filetypes, 'table' }
+  })
+  M.defaults = vim.tbl_extend("force", M.defaults, opts)
+
   local langs = { 'en' }
   local langs_map = {}
   for _, lang in ipairs(langs) do
@@ -92,7 +102,8 @@ M.setup = function()
   end
 
   source.is_available = function()
-    return vim.bo.filetype == 'markdown' or vim.bo.filetype == 'lua'
+    return vim.tbl_contains(M.defaults.filetypes, vim.bo.filetype)
+    -- return vim.bo.filetype == 'markdown' or vim.bo.filetype == 'lua'
   end
 
   -- source.get_trigger_characters = function()
